@@ -1,6 +1,9 @@
 const express = require('express');
+const authRoutes = require('./auth');
+
 const router = express.Router();
 
+// Health check endpoint
 router.get('/health', (req, res) => {
   res.status(200).json({
     success: true,
@@ -9,6 +12,7 @@ router.get('/health', (req, res) => {
   });
 });
 
+// Welcome endpoint
 router.get('/', (req, res) => {
   res.status(200).json({
     success: true,
@@ -16,5 +20,8 @@ router.get('/', (req, res) => {
     version: '1.0.0'
   });
 });
+
+// Auth routes
+router.use('/auth', authRoutes);
 
 module.exports = router;
